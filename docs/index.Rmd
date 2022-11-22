@@ -1,6 +1,6 @@
 ---
 title: "Analysis of the USA Incarceration System"
-author: "lydia Lan"
+author: "Lydia Lan"
 date: '2022-11-21'
 output: html_document
 ---

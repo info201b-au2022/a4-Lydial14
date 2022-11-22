@@ -1,45 +1,56 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Analysis of the USA Incarceration System"
+author: "lydia Lan"
+date: '2022-11-21'
 output: html_document
 ---
 
 ```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
 source("../source/analysis.R")
+source("../source/a4-helpers.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
-
+The fight for equality and justice has been at the forefront of movements for a long time. Currently, the USA has a mass incarceration problem. Certain minority groups, such as the black population, make up a small percentage of the USA's general population, but a large percentage of the incarcerated population. Throughout this assignment, I will be digging deeper into this issue and analyzing the population and demographic of those incarcerated. 
+ 
 ## Introduction 
-[TODO]
+By no means is the US incarceration system completely fair and just. The dataset used in this assignment comes from the Vera Institute. The Vera Institute tracks the amount of prisoners in each US county, and sorts them by race and year. In comparison to every other nation, the USA incarcerates the most amount of people per capita. However, this doesn't necessarily mean that there are more criminals located in the US than anywhere else. Oftentimes, the result of mass incarceration results from racial injustice, as certain minority groups are more likely to be wrongfully blamed for committing a crime. The direct stakeholders in this case would be the policy makers, law enforcement, and political influencers that are in charge of deciding a candidate's eligibility for jail time. The indirect stakeholders would be those are facing possible jail time or are already incarcerated. 
+
+The questions I tried to answer in this report are: 
+
+1). How has the average proportion of men incarcerated in 1970 compare to the proportion of men incarcerated in 2018?
+
+2). How does the average proportion of Black incarceration compare to the Black population?
+
+3). How does the proportion of Black incarceration compare among different states in the USA?
 
 ## Data Summary 
-[TODO]
+When looking at variables in this dataset, I was interested to find how the proportion of men in jail compared to the proportion of women in jail. In 2018, males make up an average proportion of `r prop_male_jail_2018` all jail members, while females make up `r prop_female_jail_2018` on average of the population in jail. If we look back to 1970, there seems to be a slight increase for the female incarcerated population. In 1970, the proportion of incarcerated males was `r prop_male_jail_2018` while the proportion of incarcerated females was `r prop_female_jail_1970`. Furthermore, if we compare the ethnic demographic of the jail population, we see that in 2018, white people made up an average incarcerated proportion of `r prop_white_jail_2018`. Whereas, black people made up an average incarcerated proportion of `r prop_black_jail_2018`. 
 
-[TODO ... other sections ... See Canvas for details]
+### Growth of the U.S. Prison population
+```{r, echo=FALSE,warning=FALSE}
+plot_jail_pop_for_us()
+```
 
-_All the very best with your work!_
+The graph of the growth of the USA prison population shows that the USA prison prison population initially started off around 175,000. Around 1980, the growth rate shoots up and reaches a high of around 780,000 around 2007. However, the growth has slightly tapered down since 2010 and even decreased a little.
 
+### Growth of Prison Population by State 
+```{r,echo=FALSE,warning=FALSE}
+plot_jail_pop_by_states(c("WA", "OR", "CA", "NY"))
+```
+
+The graph of the growth of prison population by state shows that out of the four states listed above - WA, OR, CA, NY- Oregon had the lowest number of prisoners throughout all the years. Whereas, California had the highest number of prisoners throughout all the years. However, all the states showed an overall increase in the number of prisoners from 1970 to 2018.
+
+### Comparing the Proportion of the Black Population versus the Proportion of Blacks in Incarceration 2018
+```{r,echo=FALSE,warning=FALSE}
+inequality_chart(2018)
+```
+
+This graph shows the percentage of black population compared to the black prison percentage. The percent of black jail residents varies among each county in each state. It seems that most states have an average black population percentage of 10%, but an average 25% of jail residents that are black. This shows that there's a disparity in the proportion of black people incarcerated and that it's an issue that needs to be addressed.
+
+### Mapping out the Proportion of Blacks in Incarceration Across All the States 
+```{r,echo=FALSE,warning=FALSE}
+plot_map_of_inequality()
+```
+
+The states with the highest average percent of black incarceration were Louisiana and Mississippi. The states with the lowest average percent of black incarceration were Idaho and Montanna. In a way, this makes sense because there's a much higher black population is the South than there is in the Middle North. As a result, states in a higher latitude would have a lower average percent of black incarceration than states in a lower latitude. 
